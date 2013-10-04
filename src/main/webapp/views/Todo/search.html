@@ -1,0 +1,68 @@
+<h2>Search for Todos</h2>
+<form id="TodoSearch" class="form-horizontal">
+    <div class="control-group">
+        <label for="task" class="control-label">Task</label>
+        <div class="controls">
+            <input id="task" name="task" type="text" ng-model="search.task" placeholder="Enter the Todo Task"></input>
+        </div>
+    </div>
+    <div class="control-group">
+        <label for="description" class="control-label">Description</label>
+        <div class="controls">
+            <input id="description" name="description" type="text" ng-model="search.description" placeholder="Enter the Todo Description"></input>
+        </div>
+    </div>
+    <div class="control-group">
+        <label for="completed" class="control-label">Completed</label>
+        <div class="controls">
+            <input id="completed" name="completed" type="text" ng-model="search.completed" placeholder="Enter the Todo Completed"></input>
+        </div>
+    </div>
+    <div class="control-group">
+        <label for="tags" class="control-label">Tags</label>
+        <div class="controls">
+            <input id="tags" name="tags" type="text" ng-model="search.tags" placeholder="Enter the Todo Tags"></input>
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <a id="Search" name="Search" class="btn btn-primary" ng-click="performSearch()"><i class="icon-search icon-white"></i> Search</a>
+            <a id="Create" name="Create" class="btn" href="#/Todos/new"><i class="icon-plus-sign"></i> Create New</a>
+        </div>
+    </div>
+</form>
+<div id="search-results">
+    <table class="table table-bordered table-striped clearfix">
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Description</th>
+                <th>Created On</th>
+                <th>Completed</th>
+                <th>Tags</th>
+            </tr>
+        </thead>
+        <tbody id="search-results-body">
+            <tr ng-repeat="result in searchResults | searchFilter:searchResults | startFrom:currentPage*pageSize | limitTo:pageSize">
+                <td><a href="#/Todos/edit/{{result.id}}">{{result.task}}</a></td>
+                <td><a href="#/Todos/edit/{{result.id}}">{{result.description}}</a></td>
+                <td><a href="#/Todos/edit/{{result.id}}">{{result.createdOn| date:'mediumDate'}}</a></td>
+                <td><a href="#/Todos/edit/{{result.id}}">{{result.completed}}</a></td>
+                <td><a href="#/Todos/edit/{{result.id}}">{{result.tags}}</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="pagination pagination-centered">
+        <ul>
+            <li ng-class="{disabled:currentPage == 0}">
+                <a id="prev" href ng-click="previous()">??</a>
+            </li>
+            <li ng-repeat="n in pageRange" ng-class="{active:currentPage == n}" ng-click="setPage(n)">
+                <a href ng-bind="n + 1">1</a>
+            </li>
+            <li ng-class="{disabled: currentPage == (numberOfPages() - 1)}">
+                <a id="next" href ng-click="next()">??</a>
+            </li>
+        </ul>
+    </div>
+</div>

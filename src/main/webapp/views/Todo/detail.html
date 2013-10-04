@@ -1,0 +1,42 @@
+<form id="TodoForm" name="TodoForm" class="form-horizontal">
+    <div ng-show="displayError" class="alert alert-error">
+        <strong>Error!</strong> Something broke. Retry, or cancel and start afresh.
+    </div>
+    <div class="control-group" ng-class="{error: TodoForm.task.$invalid}">
+        <label for="task" class="control-label">Task</label>
+        <div id="taskControls" class="controls">
+            <input id="task" name="task" type="text" ng-model="todo.task" placeholder="Enter the Todo Task"></input>
+        </div>
+    </div>
+    <div class="control-group" ng-class="{error: TodoForm.description.$invalid}">
+        <label for="description" class="control-label">Description</label>
+        <div id="descriptionControls" class="controls">
+            <input id="description" name="description" type="text" ng-model="todo.description" placeholder="Enter the Todo Description"></input>
+        </div>
+    </div>
+    <div class="control-group" ng-class="{error: TodoForm.createdOn.$invalid}">
+        <label for="createdOn" class="control-label">Created On</label>
+        <div id="createdOnControls" class="controls">
+            <input id="createdOn" name="createdOn" type="date" ng-model="todo.createdOn" placeholder="Enter the Todo Created On"></input>
+        </div>
+    </div>
+    <div class="control-group" ng-class="{error: TodoForm.completed.$invalid}">
+        <label for="completed" class="control-label">Completed</label>
+        <div id="completedControls" class="controls">
+            <input id="completed" name="completed" type="checkbox" ng-model="todo.completed" placeholder="Enter the Todo Completed"></input>
+        </div>
+    </div>
+    <div class="control-group" ng-class="{error: TodoForm.tags.$invalid}">
+        <label for="tags" class="control-label">Tags</label>
+        <div id="tagsControls" class="controls">
+            <input id="tags" name="tags" type="text" ng-model="todo.tags" placeholder="Enter the Todo Tags"></input>
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <button id="saveTodo" name="saveTodo" class="btn btn-primary" ng-disabled="isClean() || TodoForm.$invalid" ng-click="save()"><i class="icon-ok-sign icon-white"></i> Save</button>
+            <button id="cancel" name="cancel" class="btn" ng-click="cancel()"><i class="icon-remove-sign"></i> Cancel</button>
+            <button id="deleteTodo" name="deleteTodo" class="btn btn-danger" ng-show="todo.id" ng-click="remove()"><i class="icon-trash icon-white"></i> Delete</button>
+        </div>
+    <div>
+</form>
